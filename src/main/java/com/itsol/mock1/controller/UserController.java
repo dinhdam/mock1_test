@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -23,7 +24,8 @@ import java.util.Random;
 @Controller
 @ComponentScan
 @EnableAutoConfiguration // them vao de hoan thanh autowired
-public class UserController {
+public class UserController implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     private UserService userService;
     @Autowired

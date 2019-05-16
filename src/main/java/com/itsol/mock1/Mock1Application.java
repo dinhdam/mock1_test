@@ -14,9 +14,9 @@ import org.springframework.data.web.config.EnableSpringDataWebSupport;
 
 public class Mock1Application {
 
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(Mock1Application.class);
-    }
+//    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+//        return application.sources(Mock1Application.class);
+//    }
     public static void main(String[] args) {
         SpringApplication.run(Mock1Application.class, args);
     }
