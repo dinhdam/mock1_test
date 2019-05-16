@@ -4,7 +4,7 @@ import com.itsol.mock1.model.Post;
 import com.itsol.mock1.model.User;
 import com.itsol.mock1.service.PostService;
 import com.itsol.mock1.service.UserService;
-import org.hibernate.boot.jaxb.internal.stax.LocalXmlResourceResolver;
+//import org.hibernate.boot.jaxb.internal.stax.LocalXmlResourceResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;

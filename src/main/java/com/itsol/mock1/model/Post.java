@@ -33,16 +33,16 @@ public class Post implements Serializable {
     @ManyToOne
     @JoinColumn(name = "user_id",nullable = false)
     private User user;
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "post")
-    private Set<Comment> comments = new HashSet<>();
-
-    public Set<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(Set<Comment> comments) {
-        this.comments = comments;
-    }
+//    @OneToMany(fetch = FetchType.LAZY,mappedBy = "post")
+//    private Set<Comment> comments = new HashSet<>();
+//
+//    public Set<Comment> getComments() {
+//        return comments;
+//    }
+//
+//    public void setComments(Set<Comment> comments) {
+//        this.comments = comments;
+//    }
 
     public Post(){
         this.thumbnail = null;
