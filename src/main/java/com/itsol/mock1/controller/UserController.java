@@ -21,7 +21,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Random;
 
-@Controller
+@RestController
 @ComponentScan
 @EnableAutoConfiguration // them vao de hoan thanh autowired
 public class UserController implements Serializable {

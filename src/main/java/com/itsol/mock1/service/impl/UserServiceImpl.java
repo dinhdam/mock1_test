@@ -3,14 +3,14 @@ import com.itsol.mock1.model.User;
 import com.itsol.mock1.repository.UserRepository;
 import com.itsol.mock1.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
 
 import java.util.List;
 
-
+@Service
 public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
-
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository){

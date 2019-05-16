@@ -40,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").hasRole("MENBER")
                 .antMatchers("/hr").hasRole("ADMIN")
                 .antMatchers("/manager").hasRole("MANAGER")
-                .antMatchers("/teachlead").hasRole("TEACHLEAD")
+                .antMatchers("/teachlead").hasRole("TEAMLEAD")
 
                 .and()
                 .formLogin()

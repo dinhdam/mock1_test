@@ -17,9 +17,5 @@ public class ConfigureController {
     public String accessDenied() {
         return "/403";
     }
-    @GetMapping("/login")
-    public String login(){
-        return "login";
-    }
 }
 
