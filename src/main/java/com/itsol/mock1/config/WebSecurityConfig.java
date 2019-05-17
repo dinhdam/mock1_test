@@ -19,18 +19,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableAutoConfiguration
 
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    //để kích hoạt spring sercurity ta cần phải viết một lớp kế thừa WebSecurityConfigurerAdapter
+
     @Autowired
     private UserDetailsService userDetailsService;
-    //goi userdetailService de cau hinh
+
     @Bean
-    public PasswordEncoder passwordEncoder(){ //dam nhan ma hoa mat khau
-        return new BCryptPasswordEncoder();//ma hoa mat khau bang thuat toan BCrypt
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
 
     }
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+
     }
 
     @Override

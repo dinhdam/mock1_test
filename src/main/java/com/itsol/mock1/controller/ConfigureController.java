@@ -6,13 +6,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ConfigureController {
     @GetMapping("/")
-    public String index(){
+    public String index() {
         return "index";
     }
+
     @GetMapping("/admin")
-    public String admin(){
+    public String admin() {
         return "admin";
     }
+
     @GetMapping("/403")
     public String accessDenied() {
         return "/403";

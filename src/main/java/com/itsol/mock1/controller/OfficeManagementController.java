@@ -28,75 +28,74 @@ import java.util.Random;
 @Controller
 @ComponentScan
 @EnableAutoConfiguration
-@RequestMapping(value = {"/home","/"})
+@RequestMapping(value = {"/home", "/"})
 public class OfficeManagementController {
     private PostService postService;
     @Autowired
     private UserService userService;
-    public static String uploadDirectory = System.getProperty("user.dir")+ "/src/main/resources/static/uploads/";
+    public static String uploadDirectory = System.getProperty("user.dir") + "/src/main/resources/static/uploads/";
+
     @Autowired
-    public OfficeManagementController(PostService postService){
+    public OfficeManagementController(PostService postService) {
         this.postService = postService;
     }
+
     @GetMapping
-    public String showHomePage(Model model, HttpSession session){
+    public String showHomePage(Model model, HttpSession session) {
         List<Post> posts = postService.findAllAndSort();
-        User user = (User)session.getAttribute("current_user");
-        if(user != null){
-            session.setAttribute("current_user",userService.findById(user.getId()));
+        User user = (User) session.getAttribute("current_user");
+        if (user != null) {
+            session.setAttribute("current_user", userService.findById(user.getId()));
             model.addAttribute("users", userService.findAll());
-            model.addAttribute("postList",posts);
+            model.addAttribute("postList", posts);
         }
 
-      return "home";
+        return "home";
     }
-    @RequestMapping(value = "/post",method = RequestMethod.GET)
-    public String showPostPage(Model model){
+
+    @RequestMapping(value = "/post", method = RequestMethod.GET)
+    public String showPostPage(Model model) {
         model.addAttribute("post", new Post());
         return "new_post";
 
     }
-   @RequestMapping(value = "/post" ,method = RequestMethod.POST)
-    public String createNewPost (Model model , @ModelAttribute("post") Post post ,
-                                 @RequestParam String date , @RequestParam (value = "file")MultipartFile multipartFile ,HttpSession session)
-   {
-       Random rd = new Random();
-       int randomNum = rd.nextInt(1000000);
-       String fileName = "";
-       String dateR = "";
-       User user = (User) session.getAttribute("current_user");
-       SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy HH:mm");
-       try{
-           Date date1 = formatter.parse(date);
-           dateR = formatter.format(date1);
-           post.setDate(dateR);
 
-       }
-       catch (ParseException e){
+    @RequestMapping(value = "/post", method = RequestMethod.POST)
+    public String createNewPost(Model model, @ModelAttribute("post") Post post,
+                                @RequestParam String date, @RequestParam(value = "file") MultipartFile multipartFile, HttpSession session) {
+        Random rd = new Random();
+        int randomNum = rd.nextInt(1000000);
+        String fileName = "";
+        String dateR = "";
+        User user = (User) session.getAttribute("current_user");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy HH:mm");
+        try {
+            Date date1 = formatter.parse(date);
+            dateR = formatter.format(date1);
+            post.setDate(dateR);
 
-       e.getMessage();
-       }
-       if(!multipartFile.isEmpty()){
-           try {
-               fileName = randomNum+"_"+ multipartFile.getOriginalFilename();
-               byte[] bytes = multipartFile.getBytes();
-               Path path = Paths.get(uploadDirectory + fileName);
-               Files.write(path,bytes);
+        } catch (ParseException e) {
 
-           } catch (IOException e) {
-               e.printStackTrace();
-           }
-       }
-       post.setUser(userService.findUserByUserName(user.getUsername()));
-       post.setThumbnail(fileName);
+            e.getMessage();
+        }
+        if (!multipartFile.isEmpty()) {
+            try {
+                fileName = randomNum + "_" + multipartFile.getOriginalFilename();
+                byte[] bytes = multipartFile.getBytes();
+                Path path = Paths.get(uploadDirectory + fileName);
+                Files.write(path, bytes);
 
-
-       postService.save(post);
-       return "redirect:/";
-   }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        post.setUser(userService.findUserByUserName(user.getUsername()));
+        post.setThumbnail(fileName);
 
 
-
+        postService.save(post);
+        return "redirect:/";
+    }
 
 
 }

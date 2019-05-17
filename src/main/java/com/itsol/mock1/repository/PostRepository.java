@@ -9,9 +9,10 @@ import org.springframework.stereotype.Repository;
 
 
 import java.util.List;
+
 @Repository
-public interface PostRepository extends JpaRepository<Post,Integer> {
-    //sap xep post moi nhat len tren dau
+public interface PostRepository extends JpaRepository<Post, Integer> {
+
     @Query("SELECT p FROM Post p WHERE p.user.id = :id ORDER BY p.id DESC")
     List<Post> findPostsByUserIDAndSortDESC(@Param("id") int id);
 

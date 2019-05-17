@@ -126,6 +126,12 @@ public class UserController implements Serializable {
 
 
     }
+
+    @RequestMapping(value = "list", method = RequestMethod.GET)
+    public String list(Model model) {
+
+        return "list";
+    }
 }
 
 
